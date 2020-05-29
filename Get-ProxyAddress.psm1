@@ -32,24 +32,24 @@ function Get-ProxyAddress{
 
     if ($Address -like 'all'){
         $Addresses = $UserInfo.proxyaddresses -match 'SMTP:*' -replace '^smtp:'
-        Write-Host "All the e-mail addresses for the user are:"
+        Write-Output "All the e-mail addresses for the user are:"
         $Addresses | Write-Host
     }
 
     elseif ($Address -like 'primary'){
         $Addresses = $UserInfo.proxyaddresses -cmatch 'SMTP:*' -replace '^SMTP:'
-        Write-Host "The primary e-mail address for the user is:"
+        Write-Output "The primary e-mail address for the user is:"
         $Addresses | Write-Host
     }
 
     elseif ($Address -like 'aliases'){
         $Addresses = $UserInfo.proxyaddresses -cmatch 'smtp:*' -replace '^smtp:'
-        Write-Host "The e-mail address aliases for the user are:"
+        Write-Output "The e-mail address aliases for the user are:"
         $Addresses | Write-Host
     }
 
     else {
-        Write-Host 'Invalid Address selection'
+        Write-Output 'Invalid Address selection'
     }
     Exit-PSSession
     }
